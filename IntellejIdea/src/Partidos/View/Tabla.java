@@ -23,6 +23,7 @@ import java.util.Date;
 
 public class Tabla extends Application {
 
+
     private ObjectOutputStream ficheroPartidos;
 
     public static void main(String[] args){
@@ -130,18 +131,23 @@ public class Tabla extends Application {
         {
 
             try {
-                    ficheroPartidos=new ObjectOutputStream(new FileOutputStream("resources/partidos.txt") );
+                    ficheroPartidos=new ObjectOutputStream(new FileOutputStream("partidos.txt"));
             } catch (IOException e) {
                 e.printStackTrace();
             }for (int i=0; i< Logica.getINSTANCE().getListaPartidos().size();i++) {
 
             try {
-                ficheroPartidos.writeObject(Logica.getINSTANCE().getArray());
+                ficheroPartidos.writeObject(Logica.getINSTANCE().getArray().get(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
+            try {
+                ficheroPartidos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }

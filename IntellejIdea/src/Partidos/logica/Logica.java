@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Logica {
 
     private static Logica INSTANCE =null;
-    private ObservableList<Partidos> listaPartidos;
-    private ArrayList<Partidos> arrayPartidos;
+    private static ObservableList<Partidos> listaPartidos;
+    private static ArrayList<Partidos> arrayPartidos;
 
     private  Logica(){
 
@@ -48,7 +48,7 @@ public class Logica {
         return listaPartidos;
     }
     public ArrayList<Partidos> getArray(){
-        if(arrayPartidos.isEmpty()!=true) {
+        if(arrayPartidos==null) {
             arrayPartidos = new ArrayList<>(listaPartidos);
 
             return arrayPartidos;

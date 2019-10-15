@@ -46,9 +46,26 @@ public class AltaPartido extends Stage {
 
                 LocalDate localDate = fechaPartido.getValue();
                 String visitante2=visitante.getText();
+
                 String local2=local.getText();
                 String resultadoL=localResultado.getText();
-                int resultadoLocal=Integer.parseInt(resultadoL);
+                int resultadoLocal = 0;
+                if (Utils.esUnNumero(String.valueOf(resultadoL))) {
+
+                    resultadoLocal=Integer.parseInt(resultadoL);
+
+                }
+                else{
+                    Alert noNumero=new Alert(Alert.AlertType.ERROR);
+                    noNumero.setTitle("ERRO");
+                    noNumero.setContentText("El dato introducido no es un numero");
+                    noNumero.showAndWait();
+                    if (noNumero.getResult()== ButtonType.OK){
+                        localResultado.clear();
+                    }
+
+                }
+
                 String resultadoV=visitanteResultado.getText();
                 int resultadoVisitante=Integer.parseInt(resultadoV);
                 Division division=comboBox.getValue();
@@ -122,7 +139,6 @@ public class AltaPartido extends Stage {
 
         fechaPartido = new DatePicker();
 
-        botonAceptar = new Button("Aceptar");;
         botonAceptar = new Button("Aceptar");
 
 

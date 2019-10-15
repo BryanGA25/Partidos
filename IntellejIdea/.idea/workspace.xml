@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0ca4366a-725c-4935-8d87-b5cc9421f94d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Partidos/View/AltaPartido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partidos/View/AltaPartido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Partidos/View/Tabla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partidos/View/Tabla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Partidos/logica/Logica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partidos/logica/Logica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Partidos/logica/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partidos/logica/Utils.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,6 +117,14 @@
       <option name="presentableId" value="Default" />
       <updated>1569106018474</updated>
     </task>
+    <task id="LOCAL-00001" summary="Guardado en fichero implementado">
+      <created>1571052234701</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571052234701</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,19 +140,15 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Guardado en fichero implementado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Guardado en fichero implementado" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Partidos/View/Tabla.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="arrayPartidos" language="JAVA" />
+        <watch expression="event" />
       </configuration>
     </watches-manager>
   </component>

@@ -80,6 +80,9 @@ public class Tabla extends Application {
                 SelectionMode.MULTIPLE
 
         );
+
+        //Este boton nos permitira añadir un nuevo partido
+
         Button anadirPartido = new Button("Añadir partido");
         anadirPartido.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -88,7 +91,7 @@ public class Tabla extends Application {
                 newStage.show();
             }
         });
-
+        //Este boton no permitira modificar una lista seleccionada y en caso de no tener ninguna seleccionada nos saltara un error
         Button modificarPartido = new Button("modificar partido");
         modificarPartido.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -106,7 +109,7 @@ public class Tabla extends Application {
                         AltaPartido altaPartido =new AltaPartido(partidoSeleccionado,idPartido);
                         altaPartido.show();
                     }else {
-                        Alert alertaNoSeleccionado=new Alert(Alert.AlertType.INFORMATION);
+                        Alert alertaNoSeleccionado=new Alert(Alert.AlertType.ERROR);
                         alertaNoSeleccionado.setTitle("Problema");
                         alertaNoSeleccionado.setContentText("No ha seleccionado un partido");
                         alertaNoSeleccionado.setHeaderText("Información ");
@@ -115,6 +118,8 @@ public class Tabla extends Application {
 
             }
         }});
+
+        //Este boton no permitira borrar una lista seleccionada y en caso de no tener ninguna seleccionada nos saltara un error
 
         Button borrarPartido = new Button("Borrar Partido");
         borrarPartido.setOnAction(new EventHandler<ActionEvent>() {
@@ -130,7 +135,7 @@ public class Tabla extends Application {
                         if (idPartido!=-1) {
                             Logica.getINSTANCE().borraPartido(idPartido);
                         }else {
-                            Alert alertaNoSeleccionado=new Alert(Alert.AlertType.INFORMATION);
+                            Alert alertaNoSeleccionado=new Alert(Alert.AlertType.ERROR);
                             alertaNoSeleccionado.setTitle("Problema");
                             alertaNoSeleccionado.setContentText("No ha seleccionado un partido");
                             alertaNoSeleccionado.setHeaderText("Información ");

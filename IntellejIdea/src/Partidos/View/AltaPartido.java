@@ -63,7 +63,7 @@ public class AltaPartido extends Stage {
                     close();
                 }
                 else{
-                    Alert alertaBorrar = new Alert(Alert.AlertType.CONFIRMATION);
+                    Alert alertaBorrar = new Alert(Alert.AlertType.ERROR);
                     alertaBorrar.setTitle("Error");
                     alertaBorrar.setHeaderText("Alerta de Parametro");
                     alertaBorrar.setContentText("Algun numero introducido no es un numero");
@@ -114,7 +114,7 @@ public class AltaPartido extends Stage {
                     Logica.getINSTANCE().modificarPartido(nuevoPartido, indice);
                     close();
                 } else {
-                    Alert alertaBorrar = new Alert(Alert.AlertType.CONFIRMATION);
+                    Alert alertaBorrar = new Alert(Alert.AlertType.ERROR);
                     alertaBorrar.setTitle("Error");
                     alertaBorrar.setHeaderText("Alerta de Parametro");
                     alertaBorrar.setContentText("Algun numero introducido no es un numero");

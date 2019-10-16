@@ -16,6 +16,9 @@ public class Utils {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
+
+        /*Este metodo lo cree para poder facilitar la comprobación de si era un numero los datos que se encontraban
+            en los campos de los resultados de cada equipo */
         public static boolean esUnNumero(String cadena) {
 
             boolean resultado;

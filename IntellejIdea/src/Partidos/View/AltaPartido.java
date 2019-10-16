@@ -46,36 +46,20 @@ public class AltaPartido extends Stage {
 
                 LocalDate localDate = fechaPartido.getValue();
                 String visitante2=visitante.getText();
-
                 String local2=local.getText();
                 String resultadoL=localResultado.getText();
-                int resultadoLocal = 0;
-                if (Utils.esUnNumero(String.valueOf(resultadoL))) {
-
-                    resultadoLocal=Integer.parseInt(resultadoL);
-
-                }
-                else{
-                    Alert noNumero=new Alert(Alert.AlertType.ERROR);
-                    noNumero.setTitle("ERRO");
-                    noNumero.setContentText("El dato introducido no es un numero");
-                    noNumero.showAndWait();
-                    if (noNumero.getResult()== ButtonType.OK){
-                        localResultado.clear();
-                    }
-
-                }
-
                 String resultadoV=visitanteResultado.getText();
-                int resultadoVisitante=Integer.parseInt(resultadoV);
                 Division division=comboBox.getValue();
                 Date date = Utils.convertirToDate(localDate);
+                int resultadoLocal=Integer.parseInt(resultadoL);
+                int resultadoVisitante=Integer.parseInt(resultadoV);
                 Resultado resultado=new Resultado(resultadoLocal,resultadoVisitante);
                 Partidos partidos=new Partidos(visitante2,local2,resultado,date,division);
                 Logica.getINSTANCE().addPartido(partidos);
                 close();
             }
         }) ;
+
 
 
     }

@@ -21,6 +21,7 @@ public class Tabla extends Application {
 
 
     private ObjectOutputStream ficheroPartidos;
+    private int idPartido;
 
     public static void main(String[] args){
 
@@ -92,12 +93,28 @@ public class Tabla extends Application {
         modificarPartido.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                int indice = tablaPartidos.getSelectionModel().getSelectedIndex();
-                Partidos partidoSeleccionado =(Partidos) Logica.getINSTANCE().getListaPartidos().get(indice);
-                AltaPartido altaPartido =new AltaPartido(partidoSeleccionado,indice);
-                altaPartido.show();
+                Alert alertaModificado = new Alert(Alert.AlertType.CONFIRMATION);
+                alertaModificado.setTitle("Modificar partido");
+                alertaModificado.setHeaderText("Confirmación");
+                alertaModificado.setContentText("¿Seguro que quieres mdoficar el registro?");
+                alertaModificado.showAndWait();
+                if ((alertaModificado.getResult() == ButtonType.OK)) {
+                    idPartido= tablaPartidos.getSelectionModel().getSelectedIndex();
+                    if (idPartido!=-1) {
+
+                        Partidos partidoSeleccionado =(Partidos) Logica.getINSTANCE().getListaPartidos().get(idPartido);
+                        AltaPartido altaPartido =new AltaPartido(partidoSeleccionado,idPartido);
+                        altaPartido.show();
+                    }else {
+                        Alert alertaNoSeleccionado=new Alert(Alert.AlertType.INFORMATION);
+                        alertaNoSeleccionado.setTitle("Problema");
+                        alertaNoSeleccionado.setContentText("No ha seleccionado un partido");
+                        alertaNoSeleccionado.setHeaderText("Información ");
+                        alertaNoSeleccionado.show();
+                    }
+
             }
-        });
+        }});
 
         Button borrarPartido = new Button("Borrar Partido");
         borrarPartido.setOnAction(new EventHandler<ActionEvent>() {
@@ -109,7 +126,7 @@ public class Tabla extends Application {
                     alertaBorrar.setContentText("¿Seguro que quiere borrar el registro?");
                     alertaBorrar.showAndWait();
                     if ((alertaBorrar.getResult() == ButtonType.OK)) {
-                        int idPartido = tablaPartidos.getSelectionModel().getSelectedIndex();
+                            idPartido = tablaPartidos.getSelectionModel().getSelectedIndex();
                         if (idPartido!=-1) {
                             Logica.getINSTANCE().borraPartido(idPartido);
                         }else {

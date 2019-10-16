@@ -40,10 +40,12 @@ public class AltaPartido extends Stage {
     public AltaPartido()  {
 
         InicializaVista();
+
         botonAceptar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int resultadoLocal;
+                int resultadoVisitante;
                 LocalDate localDate = fechaPartido.getValue();
                 String visitante2=visitante.getText();
                 String local2=local.getText();
@@ -51,12 +53,33 @@ public class AltaPartido extends Stage {
                 String resultadoV=visitanteResultado.getText();
                 Division division=comboBox.getValue();
                 Date date = Utils.convertirToDate(localDate);
-                int resultadoLocal=Integer.parseInt(resultadoL);
-                int resultadoVisitante=Integer.parseInt(resultadoV);
-                Resultado resultado=new Resultado(resultadoLocal,resultadoVisitante);
-                Partidos partidos=new Partidos(visitante2,local2,resultado,date,division);
-                Logica.getINSTANCE().addPartido(partidos);
-                close();
+
+                 if(Utils.esUnNumero(resultadoL)&& Utils.esUnNumero(resultadoV)) {
+                    resultadoLocal=Integer.parseInt(resultadoL);
+                    resultadoVisitante=Integer.parseInt(resultadoV);
+                    Resultado resultado=new Resultado(resultadoLocal,resultadoVisitante);
+                    Partidos partidos=new Partidos(visitante2,local2,resultado,date,division);
+                    Logica.getINSTANCE().addPartido(partidos);
+                    close();
+                }
+                else{
+                    Alert alertaBorrar = new Alert(Alert.AlertType.CONFIRMATION);
+                    alertaBorrar.setTitle("Error");
+                    alertaBorrar.setHeaderText("Alerta de Parametro");
+                    alertaBorrar.setContentText("Algun numero introducido no es un numero");
+                    alertaBorrar.showAndWait();
+                    if ((alertaBorrar.getResult() == ButtonType.OK)) {
+                        if(Utils.esUnNumero(resultadoL)){
+                            visitanteResultado.clear();
+                        }
+                        if(Utils.esUnNumero(resultadoV)) {
+                            localResultado.clear();
+                        }
+                    }
+                }
+
+
+
             }
         }) ;
 
@@ -64,32 +87,55 @@ public class AltaPartido extends Stage {
 
     }
 
-    public AltaPartido(Partidos partido, int indice){
+    public AltaPartido(Partidos partido, int indice) {
 
         InicializaVista();
         local.setText(partido.getLocal());
-        localResultado.setText(String.valueOf( partido.getResul().getLocal()));
+        localResultado.setText(String.valueOf(partido.getResul().getLocal()));
         visitante.setText(partido.getVisitante());
         visitanteResultado.setText(String.valueOf(partido.getResul().getVisitante()));
         comboBox.setValue(partido.getDivision());
         fechaPartido.setValue(Utils.convertirToLocalDate(partido.getDate()));
 
         botonAceptar.setOnAction(new EventHandler<ActionEvent>() {
-        public void handle(ActionEvent event) {
-            String nuevoL=local.getText();
-            int nuevoResultadoL=Integer.parseInt((String.valueOf(localResultado.getText())));
-            String nuevoV=visitante.getText();
-            int nuevoVisitanteResultado= Integer.parseInt((String.valueOf(visitanteResultado.getText())));
-            Division nuevaDiv=comboBox.getValue();
-            Date nuevaFecha=Utils.convertirToDate(fechaPartido.getValue());
-            Resultado nuevoResultado=new Resultado(nuevoResultadoL,nuevoVisitanteResultado);
-            Partidos nuevoPartido=new Partidos(nuevoV,nuevoL,nuevoResultado,nuevaFecha,nuevaDiv);
-            Logica.getINSTANCE().modificarPartido(nuevoPartido,indice);
-            close();
-        }
-    }) ;
+            public void handle(ActionEvent event) {
+
+                String nuevoL = local.getText();
+                String nuevoValorL=(String.valueOf(localResultado.getText()));
+                String nuevoV = visitante.getText();
+                String nuevoValorV=(String.valueOf(visitanteResultado.getText()));
+                Division nuevaDiv = comboBox.getValue();
+                Date nuevaFecha = Utils.convertirToDate(fechaPartido.getValue());
+                if (Utils.esUnNumero(String.valueOf(localResultado.getText())) && Utils.esUnNumero(String.valueOf((visitanteResultado.getText())))) {
+                    int nuevoResultadoL = Integer.parseInt(nuevoValorL);
+                    int nuevoVisitanteResultado = Integer.parseInt(nuevoValorV);
+                    Resultado nuevoResultado = new Resultado(nuevoResultadoL, nuevoVisitanteResultado);
+                    Partidos nuevoPartido = new Partidos(nuevoV, nuevoL, nuevoResultado, nuevaFecha, nuevaDiv);
+                    Logica.getINSTANCE().modificarPartido(nuevoPartido, indice);
+                    close();
+                } else {
+                    Alert alertaBorrar = new Alert(Alert.AlertType.CONFIRMATION);
+                    alertaBorrar.setTitle("Error");
+                    alertaBorrar.setHeaderText("Alerta de Parametro");
+                    alertaBorrar.setContentText("Algun numero introducido no es un numero");
+                    alertaBorrar.showAndWait();
+                    if ((alertaBorrar.getResult() == ButtonType.OK)) {
+                        if (Utils.esUnNumero(localResultado.getText())) {
+                            visitanteResultado.clear();
+                        }
+                        if (Utils.esUnNumero(visitanteResultado.getText())) {
+                            localResultado.clear();
+                        }
+                    }
+                }
+
+
+            }
+        });
 
     }
+
+
 
     private  void InicializaVista(){
          accordion = new Accordion();
